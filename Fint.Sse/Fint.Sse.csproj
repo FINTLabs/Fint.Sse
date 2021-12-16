@@ -4,8 +4,8 @@
     <BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>FINT.Sse</PackageId>
-    <Authors>FINT</Authors>
-    <Company>FINT</Company>
+    <Authors>FINTLabs</Authors>
+    <Company>Vigo IKS</Company>
     <Product>FINT.Sse</Product>
     <Description>Eventsource implementation for .Net. By using FINT.Sse can you receive Server-Sent Event(SSE) in your native .Net program.</Description>
     <Version>1.0.0</Version>

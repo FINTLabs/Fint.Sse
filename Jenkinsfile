@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Deploy') {
       environment {
-        BINTRAY = credentials('fint-bintray')
+        NUGET_KEY = credentials('fint-nuget')
       }
       when {
           tag pattern: "v\\d+\\.\\d+\\.\\d+(-\\w+\\.\\d+)?", comparator: "REGEXP"
@@ -33,7 +33,9 @@ pipeline {
           sh "echo Version is ${VERSION}"
           sh 'git clean -fdx'
           sh "dotnet msbuild -t:restore,pack -p:Configuration=Release -p:Version=${VERSION} -p:BuildNumber=${BUILD_NUMBER} -p:RestoreSources=\"https://api.nuget.org/v3/index.json\" Fint.Sse.sln"
-          sh "dotnet nuget push Fint.Sse/bin/Release/Fint.Sse.*.nupkg -k ${BINTRAY} -s https://api.bintray.com/nuget/fint/nuget"
+
+          sh "dotnet nuget push Fint.Sse/bin/Release/Fint.Sse.*.nupkg -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json"
+
       }
     }
   }
